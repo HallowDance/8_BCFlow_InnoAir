@@ -16,7 +16,7 @@ def mapPlot(squares,gridSize):
 
     #rectangle = plt.Rectangle((0,1), 1, 1, fc='blue',ec="red")
     #plt.gca().add_patch(rectangle)
-
+#comment
 
     plt.axis('scaled')
     plt.show()
