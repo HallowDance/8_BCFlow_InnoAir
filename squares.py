@@ -18,11 +18,11 @@ def mapPlot(squares,gridSize,dataInterpolated,linesDictSquares):
                 rectangle = plt.Rectangle((n,m), 1, 1, fc='white', ec='white')
                 #print("no data, visualising as white square")
             plt.gca().add_patch(rectangle)
-    plt.axis('scaled')
+    colorSetBus=['black', 'blue', 'yellow', 'teal']
     for key in linesDictSquares:
-        a=linesDictSquares[key]
-        x1=[int(i)%gridSize+0.5 for i in a]
-        y1=[int(int(i)/gridSize)+0.5 for i in a]
+        a = linesDictSquares[key]
+        x1 = [int(i)%gridSize+0.5 for i in a]
+        y1 = [int(int(i)/gridSize)+0.5 for i in a]
         plt.plot(x1, y1)
     if(dataInterpolated):
         plt.savefig('img/interpolated.png')
