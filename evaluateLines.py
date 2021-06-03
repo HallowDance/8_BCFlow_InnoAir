@@ -8,12 +8,14 @@ from squares import mapPlot
 gridSize=10
 pollutionValues=np.zeros(gridSize**2)
 
+# get bull lines
 with open("buslines.dat", "r") as f:
     for line in f:
         li=line.strip()
         if not li.startswith('#'):
             print(line.rstrip())
 
+# get pollution info on each 
 with open("squares.dat", "r") as f:
     i=0
     for line in f:
