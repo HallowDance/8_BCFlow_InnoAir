@@ -28,11 +28,13 @@ with open("squares.dat", "r") as f:
 
 # evaluate pollution levels on each line (this has to be reimplemented better)
 for key in linesDictSquares:
-    print("Line name " + key)
+    linePollutionLevel=0
+    #print("Line name " + key)
     squaresList=linesDictSquares[key]
     for element in squaresList:
-        print(element)
-
+        linePollutionLevel+=pollutionValues[int(element)]
+    linesDictPolution[key]=linePollutionLevel
+print(linesDictPolution)
 
 
 
