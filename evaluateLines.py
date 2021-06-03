@@ -11,6 +11,7 @@ from interpolate import interpolate
 gridSize=10
 dataInterpolated=False #for saving plots, change later
 pollutionValues=np.zeros(gridSize**2)
+pollutionValuesInterpolated=np.zeros(gridSize**2) #aux list, used for interpolation
 linesDictSquares={} #dictionary containing line names as keys, and routes as values
 linesDictPolution={} #dictionary containing line names as keys, and pollution as values
 noDataSquares=[] # to contain squares with no data (for interpolation)
@@ -46,9 +47,16 @@ with open("data/squares.dat", "r") as f:
 mapPlot(pollutionValues, gridSize, dataInterpolated)
 
 #call interpolation function for missing data
-for square in noDataSquares:
-    pollutionValues[square]=interpolate(gridSize,square,pollutionValues)
-    dataInterpolated=True
+for index,square in enumerate(pollutionValues):
+    if (index in noDataSquares):
+        pollutionValuesInterpolated[index]=interpolate(gridSize,index,pollutionValues)
+    else:
+        pollutionValuesInterpolated[index]=pollutionValues[index]
+
+#this is to not contaminated interpolation by median steps
+dataInterpolated=True
+pollutionValues=pollutionValuesInterpolated
+
 #plot map with interpolations
 mapPlot(pollutionValues, gridSize, dataInterpolated)
 
