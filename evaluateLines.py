@@ -7,13 +7,14 @@ from squares import mapPlot
 
 gridSize=10
 pollutionValues=np.zeros(gridSize**2)
-
-# get bull lines
+linesDictSquares={} #dictionary containing line names as keys, and routes as values
+linesDictPolution={} #dictionary containing line names as keys, and pollution as values
+# get bull lines into a dict
 with open("buslines.dat", "r") as f:
     for line in f:
         li=line.strip()
         if not li.startswith('#'):
-            print(line.rstrip())
+            linesDictSquares[li.split(' ')[0]]=li.split(' ')[1:]
 
 # get pollution info on each 
 with open("squares.dat", "r") as f:
@@ -21,8 +22,18 @@ with open("squares.dat", "r") as f:
     for line in f:
         li=line.strip()
         if not li.startswith('#'):
-            print(li)
+            #print(li)
             pollutionValues[i]=li
             i+=1
 
-mapPlot(pollutionValues,gridSize)
+# evaluate pollution levels on each line (this has to be reimplemented better)
+for key in linesDictSquares:
+    print("Line name " + key)
+    squaresList=linesDictSquares[key]
+    for element in squaresList:
+        print(element)
+
+
+
+
+#mapPlot(pollutionValues,gridSize)
