@@ -21,12 +21,16 @@ def mapPlot(squares,gridSize,dataInterpolated,linesDictSquares):
     plt.axis('scaled')
     plt.axis('off')
     #plotting bus lines. each has it's own distinct color
+<<<<<<< HEAD
     colorList=['purple','black','navy','grey','brown']
+=======
+    colorList=['purple','black','navy','grey']
+>>>>>>> c83af40b4a9b37dcb561ca5dc57608630fdf5cc5
     for index, key in enumerate(linesDictSquares):
         a=linesDictSquares[key]
         x1=[int(i)%gridSize+0.5 for i in a]
         y1=[int(int(i)/gridSize)+0.5 for i in a]
-        plt.plot(x1, y1, color=colorList[index])
+        plt.plot(x1, y1, linewidth=3, color=colorList[index])
 
     #finalizing and saving pictures
     if(dataInterpolated):
