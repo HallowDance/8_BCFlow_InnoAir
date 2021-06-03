@@ -9,13 +9,13 @@ gridSize=10
 pollutionValues=np.zeros(gridSize**2)
 linesDictSquares={} #dictionary containing line names as keys, and routes as values
 linesDictPolution={} #dictionary containing line names as keys, and pollution as values
-# get bull lines into a dict
+# get bus lines into a dict
 with open("buslines.dat", "r") as f:
     for line in f:
         li=line.strip()
         if not li.startswith('#'):
             linesDictSquares[li.split(' ')[0]]=li.split(' ')[1:]
-
+print(linesDictSquares)
 # get pollution info on each 
 with open("squares.dat", "r") as f:
     i=0
@@ -34,8 +34,6 @@ for key in linesDictSquares:
     for element in squaresList:
         linePollutionLevel+=pollutionValues[int(element)]
     linesDictPolution[key]=linePollutionLevel
-print(linesDictPolution)
+#print(linesDictPolution)
 
-
-
-#mapPlot(pollutionValues,gridSize)
+mapPlot(pollutionValues, linesDictSquares, gridSize)
