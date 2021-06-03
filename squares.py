@@ -3,7 +3,7 @@ import numpy as np
 import random
 
 
-def mapPlot(squares,gridSize,dataInterpolated,linesDictSquares,optimized):
+def mapPlot(squares,gridSize,linesDictSquares,printNumber):
     plt.axes()
     for m in range(gridSize):
         for n in range(gridSize):
@@ -30,9 +30,5 @@ def mapPlot(squares,gridSize,dataInterpolated,linesDictSquares,optimized):
         plt.plot(x1, y1, linewidth=2.5, color=colorList[index])
 
     #finalizing and saving pictures
-    if(optimized):
-        plt.savefig('img/3-optimized.png', dpi=500)
-    elif(dataInterpolated):
-        plt.savefig('img/2-interpolated.png' , dpi=500)
-    else:
-        plt.savefig('img/1-pre-interpolated.png', dpi=500)
+        plt.savefig('img/'+str(printNumber)+'-bcflow.png',
+                bbox_inches='tight', dpi=200)

@@ -9,8 +9,7 @@ from interpolate import interpolate
 
 # GLOBAL PARAMETERS
 gridSize=30
-dataInterpolated=False #for saving plots, change later
-optimized=False #have busses ben started
+printNumber=0 #for saving plots, change later
 pollutionValues=np.zeros(gridSize**2)
 linesDictSquares={} #dictionary containing line names as keys, and routes as values
 linesDictPolution={} #dictionary containing line names as keys, and pollution as values
@@ -44,15 +43,15 @@ with open("data/squares.dat", "r") as f:
 
 
 #plot map with initial pollution levels
-mapPlot(pollutionValues, gridSize, dataInterpolated, linesDictSquares, optimized)
-
+mapPlot(pollutionValues, gridSize, linesDictSquares, printNumber)
+printNumber+=1
 #call interpolation function for missing data
 for square in noDataSquares:
     pollutionValues[square]=interpolate(gridSize,square,pollutionValues)
     dataInterpolated=True
 #plot map with interpolations
-mapPlot(pollutionValues, gridSize, dataInterpolated,linesDictSquares, optimized)
-
+mapPlot(pollutionValues, gridSize,linesDictSquares, printNumber)
+printNumber+=1
 # evaluate pollution levels on each line (this has to be reimplemented better)
 for key in linesDictSquares:
     linePollutionLevel=0
@@ -74,10 +73,19 @@ for key in linesDictSquares:
         #check if element is a number
         if not np.isnan(pollutionValues[int(element)]):
             pollutionValues[int(element)]*=66/100.0
+            try:
+                #this needs re-writing
+                pollutionValues[int(element)-gridSize]*=85/100.0
+                pollutionValues[int(element)+gridSize]*=85/100.0
+                pollutionValues[int(element)-1]*=85/100.0
+                pollutionValues[int(element)+1]*=85/100.0
+            except:
+                #handle
+                pass
             linePollutionLevel+=pollutionValues[int(element)]
         #else we assume it's zero
     linesDictPolution[key]=int(linePollutionLevel)
-    optimized=True
-mapPlot(pollutionValues, gridSize, dataInterpolated,linesDictSquares,optimized)
+    #plot so far
+    mapPlot(pollutionValues, gridSize,linesDictSquares,printNumber)
+    printNumber+=1
 print(linesDictPolution)
-
