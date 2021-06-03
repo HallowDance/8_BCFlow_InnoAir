@@ -17,7 +17,7 @@ noDataSquares=[] # to contain squares with no data (for interpolation)
 
 
 # Get bus lines into a dict
-with open("buslines.dat", "r") as f:
+with open("data/buslines.dat", "r") as f:
     for line in f:
         li=line.strip()
         if not li.startswith('#'):
@@ -25,7 +25,7 @@ with open("buslines.dat", "r") as f:
 
 
 # Get pollution info on each
-with open("squares.dat", "r") as f:
+with open("data/squares.dat", "r") as f:
     i=0
     for line in f:
         li=line.strip()
