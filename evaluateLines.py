@@ -8,7 +8,7 @@ from squares import mapPlot
 from interpolate import interpolate
 
 # GLOBAL PARAMETERS
-gridSize=10
+gridSize=30
 dataInterpolated=False #for saving plots, change later
 pollutionValues=np.zeros(gridSize**2)
 pollutionValuesInterpolated=np.zeros(gridSize**2) #aux list, used for interpolation

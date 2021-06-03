@@ -19,12 +19,16 @@ def mapPlot(squares,gridSize,dataInterpolated,linesDictSquares):
             plt.gca().add_patch(rectangle)
     plt.axis('scaled')
     plt.axis('off')
-    for key in linesDictSquares:
+    #plotting bus lines. each has it's own distinct color
+    colorList=['white','black','cyan']
+    for index, key in enumerate(linesDictSquares):
         a=linesDictSquares[key]
         x1=[int(i)%gridSize+0.5 for i in a]
         y1=[int(int(i)/gridSize)+0.5 for i in a]
-        plt.plot(x1, y1)
+        plt.plot(x1, y1, color=colorList[index])
+
+    #finalizing and saving pictures
     if(dataInterpolated):
-        plt.savefig('img/interpolated.png')
+        plt.savefig('img/interpolated.png' , dpi=1200)
     else:
-        plt.savefig('img/pre-interpolated.png')
+        plt.savefig('img/pre-interpolated.png', dpi=1200)
