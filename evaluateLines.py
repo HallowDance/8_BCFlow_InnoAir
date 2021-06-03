@@ -10,6 +10,7 @@ from interpolate import interpolate
 # GLOBAL PARAMETERS
 gridSize=30
 dataInterpolated=False #for saving plots, change later
+optimized=False #have busses ben started
 pollutionValues=np.zeros(gridSize**2)
 linesDictSquares={} #dictionary containing line names as keys, and routes as values
 linesDictPolution={} #dictionary containing line names as keys, and pollution as values
@@ -43,14 +44,14 @@ with open("data/squares.dat", "r") as f:
 
 
 #plot map with initial pollution levels
-mapPlot(pollutionValues, gridSize, dataInterpolated, linesDictSquares)
+mapPlot(pollutionValues, gridSize, dataInterpolated, linesDictSquares, optimized)
 
 #call interpolation function for missing data
 for square in noDataSquares:
     pollutionValues[square]=interpolate(gridSize,square,pollutionValues)
     dataInterpolated=True
 #plot map with interpolations
-mapPlot(pollutionValues, gridSize, dataInterpolated,linesDictSquares)
+mapPlot(pollutionValues, gridSize, dataInterpolated,linesDictSquares, optimized)
 
 # evaluate pollution levels on each line (this has to be reimplemented better)
 for key in linesDictSquares:
@@ -65,5 +66,18 @@ for key in linesDictSquares:
 
 print(linesDictPolution)
 
-
+#evaluate decresed pollution levels on each line
+for key in linesDictSquares:
+    linePollutionLevel=0
+    squaresList=linesDictSquares[key]
+    for element in squaresList:
+        #check if element is a number
+        if not np.isnan(pollutionValues[int(element)]):
+            pollutionValues[int(element)]*=66/100.0
+            linePollutionLevel+=pollutionValues[int(element)]
+        #else we assume it's zero
+    linesDictPolution[key]=int(linePollutionLevel)
+    optimized=True
+mapPlot(pollutionValues, gridSize, dataInterpolated,linesDictSquares,optimized)
+print(linesDictPolution)
 

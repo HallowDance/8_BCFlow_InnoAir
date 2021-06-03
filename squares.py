@@ -3,7 +3,7 @@ import numpy as np
 import random
 
 
-def mapPlot(squares,gridSize,dataInterpolated,linesDictSquares):
+def mapPlot(squares,gridSize,dataInterpolated,linesDictSquares,optimized):
     plt.axes()
     for m in range(gridSize):
         for n in range(gridSize):
@@ -21,19 +21,18 @@ def mapPlot(squares,gridSize,dataInterpolated,linesDictSquares):
     plt.axis('scaled')
     plt.axis('off')
     #plotting bus lines. each has it's own distinct color
-<<<<<<< HEAD
     colorList=['purple','black','navy','grey','brown']
-=======
-    colorList=['purple','black','navy','grey']
->>>>>>> c83af40b4a9b37dcb561ca5dc57608630fdf5cc5
     for index, key in enumerate(linesDictSquares):
         a=linesDictSquares[key]
         x1=[int(i)%gridSize+0.5 for i in a]
         y1=[int(int(i)/gridSize)+0.5 for i in a]
-        plt.plot(x1, y1, linewidth=3, color=colorList[index])
+        plt.plot(x1, y1, linewidth=3.5, color='white')
+        plt.plot(x1, y1, linewidth=2.5, color=colorList[index])
 
     #finalizing and saving pictures
-    if(dataInterpolated):
-        plt.savefig('img/interpolated.png' , dpi=500)
+    if(optimized):
+        plt.savefig('img/3-optimized.png', dpi=500)
+    elif(dataInterpolated):
+        plt.savefig('img/2-interpolated.png' , dpi=500)
     else:
-        plt.savefig('img/pre-interpolated.png', dpi=500)
+        plt.savefig('img/1-pre-interpolated.png', dpi=500)
