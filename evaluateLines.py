@@ -58,7 +58,7 @@ dataInterpolated=True
 pollutionValues=pollutionValuesInterpolated
 
 #plot map with interpolations
-mapPlot(pollutionValues, gridSize, dataInterpolated,linesDictSquares)
+mapPlot(pollutionValues, gridSize, dataInterpolated, linesDictSquares)
 
 # evaluate pollution levels on each line (this has to be reimplemented better)
 for key in linesDictSquares:
@@ -70,3 +70,4 @@ for key in linesDictSquares:
             linePollutionLevel+=pollutionValues[int(element)]
         #else we assume it's zero
     linesDictPolution[key]=linePollutionLevel
+print(linePollutionLevel)
