@@ -4,11 +4,16 @@ Modeling public transport lines and air quality - a part of the *InnoAir Challen
 
 ## Requirements
 ```
-python 3
+python3
 numpy
 matplotlib
 ```
 
 ## Usage
+At the current stage, this is a terminal application. 
 
-Run `evaluateLines.py`. Red represents more polution, green represents less.
+In order to start a "simulation", run `evaluateLines.py`. The program will
+create two images in the `img` folder - one will contain non-interpolated data,
+and the other - the data after interpolation.
+
+Red represents more polution, green represents less.
