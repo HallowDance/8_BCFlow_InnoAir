@@ -36,4 +36,4 @@ for key in linesDictSquares:
 
 
 
-#mapPlot(pollutionValues,gridSize)
+mapPlot(pollutionValues,linesDictSquares,gridSize)
