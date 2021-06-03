@@ -4,6 +4,7 @@ import random
 
 
 def mapPlot(squares,gridSize,dataInterpolated,linesDictSquares):
+    plt.axes()
     for m in range(gridSize):
         for n in range(gridSize):
             #check if square has a defined pollution level
@@ -17,12 +18,7 @@ def mapPlot(squares,gridSize,dataInterpolated,linesDictSquares):
                 rectangle = plt.Rectangle((n,m), 1, 1, fc='white', ec='white')
                 #print("no data, visualising as white square")
             plt.gca().add_patch(rectangle)
-<<<<<<< HEAD
     colorSetBus=['black', 'blue', 'yellow', 'teal']
-=======
-    plt.axis('scaled')
-    plt.axis('off')
->>>>>>> 222f11ee638d06ac7cd275cd2563995528a38cb3
     for key in linesDictSquares:
         a = linesDictSquares[key]
         x1 = [int(i)%gridSize+0.5 for i in a]

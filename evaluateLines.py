@@ -8,10 +8,9 @@ from squares import mapPlot
 from interpolate import interpolate
 
 # GLOBAL PARAMETERS
-gridSize=10
+gridSize=30
 dataInterpolated=False #for saving plots, change later
 pollutionValues=np.zeros(gridSize**2)
-pollutionValuesInterpolated=np.zeros(gridSize**2) #aux list, used for interpolation
 linesDictSquares={} #dictionary containing line names as keys, and routes as values
 linesDictPolution={} #dictionary containing line names as keys, and pollution as values
 noDataSquares=[] # to contain squares with no data (for interpolation)
@@ -47,18 +46,11 @@ with open("data/squares.dat", "r") as f:
 mapPlot(pollutionValues, gridSize, dataInterpolated, linesDictSquares)
 
 #call interpolation function for missing data
-for index,square in enumerate(pollutionValues):
-    if (index in noDataSquares):
-        pollutionValuesInterpolated[index]=interpolate(gridSize,index,pollutionValues)
-    else:
-        pollutionValuesInterpolated[index]=pollutionValues[index]
-
-#this is to not contaminated interpolation by median steps
-dataInterpolated=True
-pollutionValues=pollutionValuesInterpolated
-
+for square in noDataSquares:
+    pollutionValues[square]=interpolate(gridSize,square,pollutionValues)
+    dataInterpolated=True
 #plot map with interpolations
-mapPlot(pollutionValues, gridSize, dataInterpolated, linesDictSquares)
+mapPlot(pollutionValues, gridSize, dataInterpolated,linesDictSquares)
 
 # evaluate pollution levels on each line (this has to be reimplemented better)
 for key in linesDictSquares:
@@ -70,4 +62,3 @@ for key in linesDictSquares:
             linePollutionLevel+=pollutionValues[int(element)]
         #else we assume it's zero
     linesDictPolution[key]=linePollutionLevel
-print(linePollutionLevel)
