@@ -61,4 +61,9 @@ for key in linesDictSquares:
         if not np.isnan(pollutionValues[int(element)]):
             linePollutionLevel+=pollutionValues[int(element)]
         #else we assume it's zero
-    linesDictPolution[key]=linePollutionLevel
+    linesDictPolution[key]=int(linePollutionLevel)
+
+print(linesDictPolution)
+
+
+
