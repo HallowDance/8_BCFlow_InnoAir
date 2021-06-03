@@ -149,5 +149,7 @@ Thumbs.db
 # profiling data
 .prof
 
+# vim temp files
+*~
 
 # End of https://www.toptal.com/developers/gitignore/api/python
