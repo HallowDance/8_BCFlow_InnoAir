@@ -9,7 +9,7 @@ from interpolate import interpolate
 
 # GLOBAL PARAMETERS
 gridSize=10
-
+dataInterpolated=False #for saving plots, change later
 pollutionValues=np.zeros(gridSize**2)
 linesDictSquares={} #dictionary containing line names as keys, and routes as values
 linesDictPolution={} #dictionary containing line names as keys, and pollution as values
@@ -43,14 +43,14 @@ with open("data/squares.dat", "r") as f:
 
 
 #plot map with initial pollution levels
-mapPlot(pollutionValues, gridSize)
+mapPlot(pollutionValues, gridSize, dataInterpolated)
 
 #call interpolation function for missing data
 for square in noDataSquares:
     pollutionValues[square]=interpolate(gridSize,square,pollutionValues)
-
+    dataInterpolated=True
 #plot map with interpolations
-mapPlot(pollutionValues, gridSize)
+mapPlot(pollutionValues, gridSize, dataInterpolated)
 
 # evaluate pollution levels on each line (this has to be reimplemented better)
 for key in linesDictSquares:

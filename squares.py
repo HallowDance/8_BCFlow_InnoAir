@@ -3,7 +3,7 @@ import numpy as np
 import random
 
 
-def mapPlot(squares,gridSize):
+def mapPlot(squares,gridSize,dataInterpolated):
     plt.axes()
     for m in range(gridSize):
         for n in range(gridSize):
@@ -19,4 +19,7 @@ def mapPlot(squares,gridSize):
                 #print("no data, visualising as white square")
             plt.gca().add_patch(rectangle)
     plt.axis('scaled')
-    plt.show()
+    if(dataInterpolated):
+        plt.savefig('img/interpolated.png')
+    else:
+        plt.savefig('img/pre-interpolated.png')
