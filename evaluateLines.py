@@ -43,14 +43,14 @@ with open("data/squares.dat", "r") as f:
 
 
 #plot map with initial pollution levels
-mapPlot(pollutionValues, gridSize, dataInterpolated)
+mapPlot(pollutionValues, gridSize, dataInterpolated, linesDictSquares)
 
 #call interpolation function for missing data
 for square in noDataSquares:
     pollutionValues[square]=interpolate(gridSize,square,pollutionValues)
     dataInterpolated=True
 #plot map with interpolations
-mapPlot(pollutionValues, gridSize, dataInterpolated)
+mapPlot(pollutionValues, gridSize, dataInterpolated,linesDictSquares)
 
 # evaluate pollution levels on each line (this has to be reimplemented better)
 for key in linesDictSquares:
