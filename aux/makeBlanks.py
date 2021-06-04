@@ -1,4 +1,6 @@
-#prints out less complete data
+# Takes a data file, created by initData and 
+# "pokes holes" in it, turning approximately 15% 
+# of the lines to blank lines.
 
 import random as rd
 

@@ -1,3 +1,8 @@
+# Creates an array of clustered initial pollution data
+# Seems to work sufficiently well, although performance 
+# might not be optimal for large grids of data
+
+
 import random as rd
 import numpy as np
 a = np.zeros((30,30))
