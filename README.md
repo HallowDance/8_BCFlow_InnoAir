@@ -13,7 +13,10 @@ matplotlib
 At the current stage, this is a terminal application. 
 
 In order to start a "simulation", run `evaluateLines.py`. The program will
-create two images in the `img` folder - one will contain non-interpolated data,
-and the other - the data after interpolation.
+create 7 images in the `img` folder:
+  1. non-interpolated data
+  2. interpolated data
+  3.-7. soft prediction of decreased pollutiion if line is taken to be utilized
+fully (i.e, no other traffic on line)
 
 Red represents more polution, green represents less.
