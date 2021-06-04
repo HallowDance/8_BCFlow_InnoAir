@@ -25,11 +25,17 @@ Red represents more polution, green represents less.
 The pictures bellow represent a model of a city by a 30 by 30 grid with pollutiion clusters and
 5 bus lines.
 [Non-interpolated](https://theorycorner.com/static/img/0-bcflow.png)
+
 [Interpolated](https://theorycorner.com/static/img/1-bcflow.png)
+
 [With Line 1](https://theorycorner.com/static/img/0-bcflow.png)
+
 [With Line 2](https://theorycorner.com/static/img/0-bcflow.png)
+
 [With Line 3](https://theorycorner.com/static/img/0-bcflow.png)
+
 [With Line 4](https://theorycorner.com/static/img/0-bcflow.png)
+
 [With Line 5](https://theorycorner.com/static/img/0-bcflow.png)
 
 The images abore are compiled to a demo gif:
