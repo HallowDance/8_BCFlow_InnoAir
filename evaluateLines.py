@@ -10,7 +10,7 @@ from interpolate import interpolate
 # GLOBAL PARAMETERS
 gridSize=30
 printNumber=0 #for saving plots, change later
-noDraw=True #set to True if you do not wish to draw pictures
+noDraw=False #set to True if you do not wish to draw pictures
 pollutionValues=np.zeros(gridSize**2)
 linesDictSquares={} #dictionary containing line names as keys, and routes as values
 linesDictPolution={} #dictionary containing line names as keys, and pollution as values
@@ -44,15 +44,14 @@ with open("data/squares.dat", "r") as f:
 
 
 #plot map with initial pollution levels
-mapPlot(pollutionValues, gridSize, linesDictSquares, printNumber, noDraw)
+mapPlot(pollutionValues, gridSize, linesDictSquares, linesDictPolution, printNumber, noDraw)
 printNumber+=1
+
 #call interpolation function for missing data
 for square in noDataSquares:
     pollutionValues[square]=interpolate(gridSize,square,pollutionValues)
     dataInterpolated=True
-#plot map with interpolations
-mapPlot(pollutionValues, gridSize, linesDictSquares, printNumber, noDraw)
-printNumber+=1
+
 # evaluate pollution levels on each line (this has to be reimplemented better)
 for key in linesDictSquares:
     linePollutionLevel=0
@@ -64,6 +63,9 @@ for key in linesDictSquares:
         #else we assume it's zero
     linesDictPolution[key]=int(linePollutionLevel)
 
+#plot map with interpolations
+mapPlot(pollutionValues, gridSize, linesDictSquares, linesDictPolution, printNumber, noDraw)
+printNumber+=1
 print('Initial pollution level of transport lines:\n', dict(sorted(linesDictPolution.items(),key=lambda item: item[1],
     reverse=True)))
 
@@ -88,7 +90,7 @@ for key in linesDictSquares:
         #else we assume it's zero
     linesDictPolution[key]=int(linePollutionLevel)
     #plot so far
-    mapPlot(pollutionValues, gridSize, linesDictSquares, printNumber, noDraw)
+    mapPlot(pollutionValues, gridSize, linesDictSquares, linesDictPolution, printNumber, noDraw)
     printNumber+=1
 
 #print sorted dictionary

@@ -3,7 +3,7 @@ import numpy as np
 import random
 
 
-def mapPlot(squares,gridSize,linesDictSquares,printNumber, noDraw):
+def mapPlot(squares,gridSize,linesDictSquares, linesDictPollution, printNumber, noDraw):
     #don't draw anything
     if(noDraw):
         return
@@ -21,12 +21,11 @@ def mapPlot(squares,gridSize,linesDictSquares,printNumber, noDraw):
                 else:
                     #handle missing data points before interpolation. set color to white
                     rectangle = plt.Rectangle((n,m), 1, 1, fc='white', ec='white')
-                    #print("no data, visualising as white square")
                 plt.gca().add_patch(rectangle)
         plt.axis('scaled')
         plt.axis('off')
         #plotting bus lines. each has it's own distinct color
-        colorList=['purple','black','navy','grey','brown']
+        colorList=['Purple','black','navy','grey','brown']
         for index, key in enumerate(linesDictSquares):
             a=linesDictSquares[key]
             x1=[int(i)%gridSize+0.5 for i in a]
@@ -34,6 +33,18 @@ def mapPlot(squares,gridSize,linesDictSquares,printNumber, noDraw):
             plt.plot(x1, y1, linewidth=3.5, color='white')
             plt.plot(x1, y1, linewidth=2.5, color=colorList[index])
 
+        #printing legend
+        labels=[]
+        props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+        for key in linesDictPollution:
+            labels.append(key+': '+str(linesDictPollution[key]))
+
+        if not labels:
+            labels='[\'Purple: 0000\', \'Black: 0000\', \'Blue: 0000\', \'Green: 0000\', \'Brown: 0000\']'
+        text=plt.text(1.5,-1,labels ,fontsize=6,
+        horizontalalignment='left', verticalalignment='top',
+                bbox=props)
         #finalizing and saving pictures
-            plt.savefig('img/'+str(printNumber)+'-bcflow.png',
+        plt.savefig('img/'+str(printNumber)+'-bcflow.png',
                     bbox_inches='tight', dpi=200)
+        text.set_text('')
