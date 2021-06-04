@@ -35,4 +35,4 @@ The pictures bellow represent a model of a city by a 30 by 30 grid with pollutio
 
 The images above are compiled to a demo gif:
 
-<img src="https://theorycorner.com/static/img/gif.gif" width=501>
+
